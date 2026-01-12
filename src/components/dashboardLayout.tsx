@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import { AppSidebar, SidebarToggle } from "@/components/";
+import { AppSidebar, SidebarToggle } from "@/components/sideBar";
 import { useTheme } from "@/hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";

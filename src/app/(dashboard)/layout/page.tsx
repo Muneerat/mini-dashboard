@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Users, DollarSign, TrendingDown, CreditCard } from "lucide-react";
-import { MetricCard } from "@/components/MetricCard";
-import { DashboardChart } from "@/components/DashboardChart";
-import { DashboardLayout } from "@/components/DashboardLayout";
+import { MetricCard } from "@/components/metriesCard";
+import { DashboardChart } from "@/components/dashboardChart";
+import { DashboardLayout } from "@/components/dashboardLayout";
 import {
   fetchDashboardMetrics,
   fetchChartData,

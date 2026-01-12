@@ -1,16 +1,20 @@
-import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/authContext";
 import { Loader2 } from "lucide-react";
 
-interface ProtectedRouteProps {
-  children: ReactNode;
-}
+export function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
-export function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { user, isLoading } = useAuth();
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/login");
+    }
+  }, [user, loading, router]);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -19,7 +23,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   }
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return null;
   }
 
   return <>{children}</>;
