@@ -1,3 +1,4 @@
+"use client";
 import {
   LayoutDashboard,
   Settings,
@@ -6,8 +7,7 @@ import {
   LogOut,
   Menu,
 } from "lucide-react";
-import { NavLink } from "@/components/navLink";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/contexts/authContext";
 import {
   Sidebar,
   SidebarContent,
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import Link from "next/link";
 
 const navItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
@@ -35,6 +36,8 @@ const navItems = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const { user, logout } = useAuth();
+  const displayName = user?.displayName || user?.email?.split("@")[0] || "User";
+  const userInitial = displayName.charAt(0).toUpperCase();
   const collapsed = state === "collapsed";
 
   return (
@@ -42,30 +45,27 @@ export function AppSidebar() {
       <SidebarHeader className="border-b border-sidebar-border p-4">
         <div className="flex items-center gap-2">
           <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">S</span>
+            <span className="text-primary-foreground font-bold text-sm">D</span>
           </div>
-          {!collapsed && (
-            <span className="font-semibold text-lg">SaaSBoard</span>
-          )}
+          {!collapsed && <span className="font-semibold text-lg">Dabang</span>}
         </div>
       </SidebarHeader>
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-5">
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <NavLink
-                      to={item.url}
-                      className="flex items-center gap-2 hover:bg-sidebar-accent rounded-md transition-colors"
-                      activeClassName="bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+                    <Link
+                      href={item.url}
+                      className="flex items-center gap-4 hover:bg-sidebar-accent rounded-md transition-colors"
+                      // activeClassName="bg-sidebar-accent text-sidebar-accent-foreground font-medium"
                     >
                       <item.icon className="h-4 w-4 shrink-0" />
                       <span>{item.title}</span>
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -76,14 +76,14 @@ export function AppSidebar() {
 
       <SidebarFooter className="border-t border-sidebar-border p-4">
         <div className="flex items-center gap-2">
-          <Avatar className="h-8 w-8">
+          <Avatar className="h-10 w-10">
             <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-              {user?.name?.charAt(0).toUpperCase() || "U"}
+              {userInitial}
             </AvatarFallback>
           </Avatar>
           {!collapsed && (
             <div className="flex-1 overflow-hidden">
-              <p className="text-sm font-medium truncate">{user?.name}</p>
+              <p className="text-sm font-medium truncate">{displayName}</p>
               <p className="text-xs text-muted-foreground truncate">
                 {user?.email}
               </p>

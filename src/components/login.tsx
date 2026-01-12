@@ -129,7 +129,7 @@ export default function Login() {
     } catch (err: any) {
       console.error("Login error:", err);
 
-      // Handle specific Firebase errors
+      // Handle Firebase errors
       if (err.code === "auth/invalid-credential") {
         setError("Invalid email or password");
       } else if (err.code === "auth/user-not-found") {
@@ -151,9 +151,9 @@ export default function Login() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 h-12 w-12 rounded-xl bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-xl">S</span>
+            <span className="text-primary-foreground font-bold text-xl">D</span>
           </div>
-          <CardTitle className="text-2xl">Welcome to SaaSBoard</CardTitle>
+          <CardTitle className="text-2xl">Welcome to Dabang</CardTitle>
           <CardDescription>Sign in to access your dashboard</CardDescription>
         </CardHeader>
         <CardContent>
@@ -163,7 +163,7 @@ export default function Login() {
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -174,7 +174,7 @@ export default function Login() {
               <Input
                 id="password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

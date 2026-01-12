@@ -23,7 +23,7 @@ export function DashboardChart({ data, isLoading }: DashboardChartProps) {
         <CardHeader>
           <CardTitle>Growth Overview</CardTitle>
         </CardHeader>
-        <CardContent className="h-[300px] flex items-center justify-center">
+        <CardContent className="h-75 flex items-center justify-center">
           <div className="animate-pulse text-muted-foreground">
             Loading chart...
           </div>

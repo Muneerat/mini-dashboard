@@ -45,8 +45,6 @@ export default function Register() {
       await register(email, password);
       router.push("/dashboard");
     } catch (err: any) {
-      console.error("Registration error:", err);
-
       // Handle Firebase errors
       if (err.code === "auth/email-already-in-use") {
         setError("An account with this email already exists");
@@ -67,12 +65,10 @@ export default function Register() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 h-12 w-12 rounded-xl bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-xl">S</span>
+            <span className="text-primary-foreground font-bold text-xl">D</span>
           </div>
           <CardTitle className="text-2xl">Create an Account</CardTitle>
-          <CardDescription>
-            Sign up to get started with SaaSBoard
-          </CardDescription>
+          <CardDescription>Sign up to get started with Dabang</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -81,7 +77,7 @@ export default function Register() {
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -92,7 +88,7 @@ export default function Register() {
               <Input
                 id="password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -104,7 +100,7 @@ export default function Register() {
               <Input
                 id="confirmPassword"
                 type="password"
-                placeholder="••••••••"
+                placeholder="Re-enter your password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
@@ -125,7 +121,7 @@ export default function Register() {
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link href="/login" className="text-primary hover:underline">
+            <Link href="/" className="text-primary hover:underline">
               Sign in
             </Link>
           </p>
