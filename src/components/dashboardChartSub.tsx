@@ -109,7 +109,7 @@ export function SubscriptionChart({ data, isLoading }: SubscriptionChartProps) {
               labelStyle={{ color: "hsl(var(--foreground))" }}
             />
             <Legend />
-            <Area
+            {/* <Area
               type="monotone"
               dataKey="activeSubscriptions"
               stroke="hsl(var(--primary))"
@@ -117,31 +117,7 @@ export function SubscriptionChart({ data, isLoading }: SubscriptionChartProps) {
               fill="url(#colorSubscriptions)"
               strokeWidth={2}
               name="Active Subscriptions"
-            />
-            {/* Optional: Show new subscriptions */}
-            {data.some((d) => d.newSubscriptions !== undefined) && (
-              <Area
-                type="monotone"
-                dataKey="newSubscriptions"
-                stroke="hsl(142 76% 36%)"
-                fillOpacity={1}
-                fill="url(#colorNew)"
-                strokeWidth={2}
-                name="New Subscriptions"
-              />
-            )}
-            {/* Optional: Show canceled subscriptions */}
-            {data.some((d) => d.canceledSubscriptions !== undefined) && (
-              <Area
-                type="monotone"
-                dataKey="canceledSubscriptions"
-                stroke="hsl(0 84% 60%)"
-                fillOpacity={1}
-                fill="url(#colorCanceled)"
-                strokeWidth={2}
-                name="Canceled Subscriptions"
-              />
-            )}
+            /> */}
           </AreaChart>
         </ResponsiveContainer>
       </CardContent>

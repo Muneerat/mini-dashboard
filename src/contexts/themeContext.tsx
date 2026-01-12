@@ -35,7 +35,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  // Prevent flash of unstyled content
   if (!mounted) {
     return <>{children}</>;
   }

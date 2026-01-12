@@ -1,7 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Users, DollarSign, TrendingDown, CreditCard } from "lucide-react";
-import { MetricCard } from "@/components/metriesCard";
 import { DashboardChart } from "@/components/dashboardChart";
 import { DashboardLayout } from "@/components/dashboardLayout";
 import { ProtectedRoute } from "@/components/protectedRoute";
@@ -10,11 +8,9 @@ import {
   fetchChartData,
   DashboardMetrics,
   ChartDataPoint,
-  SubscriptionData,
   fetchSubscriptionData,
   SubscriptionDataPoint,
 } from "@/lib/api";
-import { Skeleton } from "@/components/ui/skeleton";
 import { SubscriptionChart } from "@/components/dashboardChartSub";
 
 export default function Dashboard() {
@@ -47,17 +43,19 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <DashboardLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">Analytics</h1>
-        </div>
+    <ProtectedRoute>
+      <DashboardLayout>
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold">Analytics</h1>
+          </div>
 
-        <div className="grid lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-5 mt-14">
-          <DashboardChart data={chartData} isLoading={isLoading} />
-          <SubscriptionChart data={subscriptionData} isLoading={isLoading} />
+          <div className="grid lg:grid-cols-1 md:grid-cols-1 grid-cols-1 gap-5 mt-14">
+            <DashboardChart data={chartData} isLoading={isLoading} />
+            <SubscriptionChart data={subscriptionData} isLoading={isLoading} />
+          </div>
         </div>
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </ProtectedRoute>
   );
 }

@@ -5,7 +5,6 @@ import { useTheme } from "@/contexts/themeContext";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DashboardLayoutProps } from "@/types/types";
-import { ProtectedRoute } from "./protectedRoute";
 import { useAuth } from "@/contexts/authContext";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 

@@ -56,7 +56,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="gap-5">
+            <SidebarMenu className="gap-4">
               {navItems.map((item) => {
                 const isActive = pathname === item.url;
                 return (
@@ -64,22 +64,21 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       asChild
                       tooltip={item.title}
-                      isActive={isActive} // Some shadcn sidebar themes use this prop
+                      isActive={isActive}
                     >
                       <Link
                         href={item.url}
                         className={cn(
-                          "flex items-center gap-4 rounded-md transition-colors px-3 py-2",
-                          // 4. Apply active styles
+                          "flex items-center gap-4 rounded-md transition-colors px-3 py-5",
                           isActive
-                            ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                            : "hover:bg-sidebar-accent/50 text-muted-foreground"
+                            ? "bg-primary text-primary-foreground font-medium"
+                            : "hover:bg-primary/15 text-primary"
                         )}
                       >
                         <item.icon
                           className={cn(
                             "h-4 w-4 shrink-0",
-                            isActive ? "text-primary" : ""
+                            isActive ? "text-primary-foreground " : ""
                           )}
                         />
                         <span>{item.title}</span>

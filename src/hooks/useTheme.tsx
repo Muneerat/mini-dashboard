@@ -71,7 +71,6 @@ export function ThemeToggle() {
   );
 }
 
-// Alternative: Dropdown version
 import {
   DropdownMenu,
   DropdownMenuContent,
