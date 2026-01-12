@@ -13,7 +13,6 @@ export interface ChartDataPoint {
   revenue: number;
 }
 
-// Simulates an API call with delay
 export const fetchDashboardMetrics = (): Promise<DashboardMetrics> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -41,3 +40,96 @@ export const fetchChartData = (): Promise<ChartDataPoint[]> => {
     }, 600);
   });
 };
+
+export interface SubscriptionDataPoint {
+  month: string;
+  activeSubscriptions: number;
+  newSubscriptions?: number;
+  canceledSubscriptions?: number;
+}
+
+export const SubscriptionData: SubscriptionDataPoint[] = [
+  {
+    month: "Jan",
+    activeSubscriptions: 1200,
+    newSubscriptions: 150,
+    canceledSubscriptions: 30,
+  },
+  {
+    month: "Feb",
+    activeSubscriptions: 1320,
+    newSubscriptions: 180,
+    canceledSubscriptions: 60,
+  },
+  {
+    month: "Mar",
+    activeSubscriptions: 1440,
+    newSubscriptions: 200,
+    canceledSubscriptions: 80,
+  },
+  {
+    month: "Apr",
+    activeSubscriptions: 1560,
+    newSubscriptions: 220,
+    canceledSubscriptions: 100,
+  },
+  {
+    month: "May",
+    activeSubscriptions: 1680,
+    newSubscriptions: 250,
+    canceledSubscriptions: 130,
+  },
+  {
+    month: "Jun",
+    activeSubscriptions: 1800,
+    newSubscriptions: 280,
+    canceledSubscriptions: 160,
+  },
+  {
+    month: "Jul",
+    activeSubscriptions: 1920,
+    newSubscriptions: 300,
+    canceledSubscriptions: 180,
+  },
+  {
+    month: "Aug",
+    activeSubscriptions: 2040,
+    newSubscriptions: 320,
+    canceledSubscriptions: 200,
+  },
+  {
+    month: "Sep",
+    activeSubscriptions: 2160,
+    newSubscriptions: 350,
+    canceledSubscriptions: 230,
+  },
+  {
+    month: "Oct",
+    activeSubscriptions: 2280,
+    newSubscriptions: 380,
+    canceledSubscriptions: 260,
+  },
+  {
+    month: "Nov",
+    activeSubscriptions: 2400,
+    newSubscriptions: 400,
+    canceledSubscriptions: 280,
+  },
+  {
+    month: "Dec",
+    activeSubscriptions: 2520,
+    newSubscriptions: 420,
+    canceledSubscriptions: 300,
+  },
+];
+
+// API function to fetch subscription data
+export async function fetchSubscriptionData(): Promise<
+  SubscriptionDataPoint[]
+> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(SubscriptionData);
+    }, 1000);
+  });
+}

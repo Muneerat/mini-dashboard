@@ -1,11 +1,10 @@
+"use client";
 import { useState } from "react";
-import { DashboardLayout } from "@/components/DashboardLayout";
-import { useAuth } from "@/hooks/useAuth";
-import { useTheme } from "@/h";
+import { DashboardLayout } from "@/components/dashboardLayout";
+import { useAuth } from "@/contexts/authContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import {
   Card,
   CardContent,
@@ -18,9 +17,10 @@ import { toast } from "sonner";
 import { Loader2, Check } from "lucide-react";
 
 export default function Settings() {
-  const { user, updateProfile } = useAuth();
-  const { theme, setTheme } = useTheme();
+  const { user } = useAuth();
   const [name, setName] = useState(user?.name || "");
+  const displayName = user?.displayName || user?.email?.split("@")[0] || "User";
+  const userInitial = displayName.charAt(0).toUpperCase();
   const [email, setEmail] = useState(user?.email || "");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -29,7 +29,7 @@ export default function Settings() {
     setIsSaving(true);
 
     try {
-      await updateProfile({ name, email });
+      // await updateProfile({ name, email });
       toast.success("Profile updated successfully");
     } catch (error) {
       toast.error("Failed to update profile");
@@ -92,32 +92,6 @@ export default function Settings() {
         </Card>
 
         <Separator />
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Appearance</CardTitle>
-            <CardDescription>
-              Customize how the dashboard looks.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label htmlFor="dark-mode">Dark Mode</Label>
-                <p className="text-sm text-muted-foreground">
-                  Toggle between light and dark themes
-                </p>
-              </div>
-              <Switch
-                id="dark-mode"
-                checked={theme === "dark"}
-                onCheckedChange={(checked) =>
-                  setTheme(checked ? "dark" : "light")
-                }
-              />
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </DashboardLayout>
   );
