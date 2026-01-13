@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 import { useState } from "react";
 import { DashboardLayout } from "@/components/dashboardLayout";
 import { useAuth } from "@/contexts/authContext";
@@ -16,8 +17,8 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { Loader2, Check } from "lucide-react";
 import { ProtectedRoute } from "@/components/protectedRoute";
-import { Switch } from "@/components/ui/switch";
-import { useTheme } from "@/contexts/themeContext";
+// import { Switch } from "@/components/ui/switch";
+// import { useTheme } from "@/contexts/themeContext";
 
 export default function Settings() {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ export default function Settings() {
   const userInitial = displayName.charAt(0).toUpperCase();
   const [email, setEmail] = useState(user?.email || "");
   const [isSaving, setIsSaving] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  //   const { theme, toggleTheme } = useTheme();
 
   const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,11 +114,11 @@ export default function Settings() {
                   </p>
                 </div>
 
-                <Switch
+                {/* <Switch
                   id="dark-mode"
                   checked={theme === "dark"}
                   onCheckedChange={toggleTheme}
-                />
+                /> */}
               </div>
             </CardContent>
           </Card>
