@@ -30,7 +30,7 @@ export function SubscriptionChart({ data, isLoading }: SubscriptionChartProps) {
         <CardHeader>
           <CardTitle>Active Subscriptions</CardTitle>
         </CardHeader>
-        <CardContent className="h-[350px] flex items-center justify-center">
+        <CardContent className="h-87.5 flex items-center justify-center">
           <div className="animate-pulse text-muted-foreground">
             Loading chart...
           </div>
@@ -109,7 +109,7 @@ export function SubscriptionChart({ data, isLoading }: SubscriptionChartProps) {
               labelStyle={{ color: "hsl(var(--foreground))" }}
             />
             <Legend />
-            {/* <Area
+            <Area
               type="monotone"
               dataKey="activeSubscriptions"
               stroke="hsl(var(--primary))"
@@ -117,7 +117,7 @@ export function SubscriptionChart({ data, isLoading }: SubscriptionChartProps) {
               fill="url(#colorSubscriptions)"
               strokeWidth={2}
               name="Active Subscriptions"
-            /> */}
+            />
           </AreaChart>
         </ResponsiveContainer>
       </CardContent>

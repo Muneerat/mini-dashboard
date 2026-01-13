@@ -16,6 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { Loader2, Check } from "lucide-react";
 import { ProtectedRoute } from "@/components/protectedRoute";
+import { Switch } from "@/components/ui/switch";
+import { useTheme } from "@/contexts/themeContext";
 
 export default function Settings() {
   const { user } = useAuth();
@@ -24,6 +26,7 @@ export default function Settings() {
   const userInitial = displayName.charAt(0).toUpperCase();
   const [email, setEmail] = useState(user?.email || "");
   const [isSaving, setIsSaving] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,6 +99,28 @@ export default function Settings() {
           </Card>
 
           <Separator />
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Appearance</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label htmlFor="dark-mode">Dark Mode</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Toggle between light and dark themes
+                  </p>
+                </div>
+
+                <Switch
+                  id="dark-mode"
+                  checked={theme === "dark"}
+                  onCheckedChange={toggleTheme}
+                />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </DashboardLayout>
     </ProtectedRoute>

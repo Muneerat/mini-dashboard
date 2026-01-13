@@ -23,6 +23,7 @@ if (!getApps().length) {
 }
 
 const auth = getAuth();
+//TODO: Add database
 
 interface AuthContextType {
   user: User | null;
