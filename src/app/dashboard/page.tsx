@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { Users, DollarSign, TrendingDown, CreditCard } from "lucide-react";
 import { MetricCard } from "@/components/metriesCard";
-import { DashboardChart } from "@/components/dashboardChart";
 import { DashboardLayout } from "@/components/dashboardLayout";
 import { ProtectedRoute } from "@/components/protectedRoute";
 import {
@@ -14,7 +13,24 @@ import {
   SubscriptionDataPoint,
 } from "@/lib/api";
 import { Skeleton } from "@/components/ui/skeleton";
-import { SubscriptionChart } from "@/components/dashboardChartSub";
+import dynamic from "next/dynamic";
+
+const DashboardChart = dynamic(
+  () => import("@/components/dashboardChart").then((m) => m.DashboardChart),
+  {
+    loading: () => <div className="h-64 bg-muted animate-pulse rounded-lg" />,
+    ssr: false,
+  }
+);
+
+const SubscriptionChart = dynamic(
+  () =>
+    import("@/components/dashboardChartSub").then((m) => m.SubscriptionChart),
+  {
+    loading: () => <div className="h-64 bg-muted animate-pulse rounded-lg" />,
+    ssr: false,
+  }
+);
 
 export default function Dashboard() {
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);

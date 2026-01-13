@@ -1,4 +1,4 @@
-// Mock API service for dashboard data
+
 
 export interface DashboardMetrics {
   monthlyUsers: number;
@@ -123,7 +123,7 @@ export const SubscriptionData: SubscriptionDataPoint[] = [
   },
 ];
 
-// API function to fetch subscription data
+
 export async function fetchSubscriptionData(): Promise<
   SubscriptionDataPoint[]
 > {
